@@ -63,7 +63,7 @@ int main()
 
         case 4:
         sort(o1.begin(),o1.end(),compare);
-        cout<<"\n\n Sorted on Cost;";
+        cout<<"\n\n Sorted on Cost:";
         display();
         break;
 
@@ -83,6 +83,8 @@ Item i1;
 cout<<"\nEnter Item Name:  ";
 cin>>i1.name;
 cout<<"\nEnter Item Quantity: ";
+cin>>i1.quantity;
+cout<<"\nEnter Item cost: ";
 cin>>i1.cost;
 cout<<"\nEnter Item Code: ";
 cin>>i1.code;
@@ -137,4 +139,3 @@ o1.erase(p);
 cout<<"\nDeleted";
 }
 }
-
