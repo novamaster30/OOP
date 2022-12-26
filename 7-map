@@ -10,7 +10,7 @@ int main()
 	populationMap.insert(pair<string, int>("Rajasthan",6578936));
 	populationMap.insert(pair<string, int>("Karnataka",6678993));
 	populationMap.insert(pair<string, int>("Punjab",5789032));
-	populationMap.insert(pair<string, int>("West Bemgal",6676291));
+	populationMap.insert(pair<string, int>("West Bengal",6676291));
 	mapType::iterator iter;
 	cout<<"==============Population of states in India===================\n";
 	cout<<"\n Size of population Map: "<<populationMap.size()<<"\n";
