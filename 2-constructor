@@ -1,184 +1,140 @@
-
-using namespace std;
 #include<iostream>
-#include<string.h> 
-#include<ctime> 
-
-class age;
-
-class person
+#include<string>
+using namespace std;
+class student 
 {
-	friend class age;	
 	private:
-		char *name,*blood,*address;	
-		int dob;
-		long int insurance,tel,license;
-		float height,weight;
-		static int count;           
-	public:
-		person()	
-		{
-			count++;
-			cout<<"-----------------default information------------";
-			name=new char[13];	
-			strcpy(name,"default name");
-			blood=new char[3];
-			strcpy(blood,"O+");
-			address=new char[20];
-			strcpy(address,"nasik");
-			insurance=12345;
-			tel=360410550;
-			license=1234567;
-			height=10.2;
-			weight=120;
-			dob=1996;
-			display();
+	string name,DOB,blood_grp,addr,year_class,MOB;
+	char div;
+	int *rollno;
 
-		}
-		person(char n[],char b[],int yy,char add[],long int in,long int tn,long int ln,float h,float w) 
-		{
-		        count++;
-		        int len;
-		        len=strlen(n);
-		        name=new char[len+1];
-		        strcpy(name,n);
-
-		        len=strlen(b);
-		        blood=new char[len+1];
-		        strcpy(blood,b);
-
-		        len=strlen(add);
-		        address=new char[len+1];
-		        strcpy(address,add);
-		        dob=yy;
-		        insurance=in;
-		        tel=tn;
-		        license=ln;
-		        height=h;
-		        weight=w;
-		}
-		void display();		
-		
-		person & compare(person *x1) 
-		{
-			if(x1->height > height)
-			{
-			        return *x1;
-			}
-			else
-			{
-			        return *this;	
-			}
-		}
-		static int displaycount()             
-		{
-		        cout<<"\n NUMBER OF ENTRIES ARE:"<<count<<endl;
-		}
-
-	        ~person()            
-	        {
-		        cout<<"\n destructor called...";
-	        }
-};
-class age                                          
-{
-private:int ag,date;
 public:
-        void calculate(person *x)	
-        {
-                date=x->dob;
-                time_t now=time(0);
-                tm *ltm=localtime(&now);
-                ag=(1900+ltm->tm_year)-date;
-                cout<<" AGE:"<<ag<<endl;
-        }
-};
-int person::count=0;
-        void person::display()	
-        {
-	        cout<<"\n PERSON NAME:"<<name;
-	        cout<<"\n BLOOD GROUP:"<<blood;
-	        cout<<"\n DATE OF BIRTH:"<<dob;
-	        cout<<"\n CONTACT ADDRESS:"<<address;
-	        cout<<"\n INSURANCE NUMBER:"<<insurance;
-	        cout<<"\n TELEPHONE NUMBER:"<<tel;
-	        cout<<"\n LICENSE NUMBER:"<<license;
-	        cout<<"\n HEIGHT:"<<height;
-	        cout<<"\n WEIGHT:"<<weight<<endl;
-        }
-int main()					
-{
-	int ch;			
-	person *p[20],*temp;
-	age *a[20];
-	char pname[15],pblood[5],paddress[20];
-	long int pinsurance,ptel,plicense;
-	float pheight,pweight;
-	int cnt=0,dd;
-do
-{
-        cout<<"\n ------------------------MENU-------------------------"<<endl;
-	cout<<"\n 1.DEFAULT CONSTRUCTER ";
-	cout<<"\n 2.PARAMETERIZED CONSTRUCTOR";	
-	cout<<"\n 3.NUMBER OF ENTRIES";
-	cout<<"\n 4.CALCULATE AGE:";
-	cout<<"\n 5.TALLER PERSON:";
-	cout<<"\n 6.EXIT";
-	cout<<"\n ENTER THE CHOICE:";
-	cin>>ch;
-	switch(ch)
-	{
-		case 1: 		
-			p[cnt]=new person();
-			a[cnt]=new age();
-			cnt=cnt+1;
-			break;
-		case 2:			
-			cout<<"\n ENTER THE PERSON NAME:";
-			cin>>pname;
-			cout<<"\n ENTER THE PERSON BLOOD GROUP:";
-			cin>>pblood;
-			cout<<"\n ENTER DATE OF BIRTH:";
-			cin>>dd;
-			cout<<"\n ENTER THE PERSON CONTACT ADDRESS:";
-			cin>>paddress;
-			cout<<"\n ENTER THE PERSON INSURANCE NUMBER:";
-			cin>>pinsurance;
-			cout<<"\n ENTER THE PERSON TELEPHONE NUMBER:";
-			cin>>ptel;
-			cout<<"\n ENTER THE PERSON LICENSE NUMBER:";
-			cin>>plicense;
-			cout<<"\n ENTER THE PERSON HEIGHT:";
-			cin>>pheight;
-			cout<<"\n ENTER THE PERSON WEIGHT:";
-			cin>>pweight;
-			p[cnt]=new person(pname,pblood,dd,paddress,pinsurance,ptel,plicense,pheight,pweight);
-			a[cnt]=new age();
-			cnt=cnt+1;
-			break;
+friend class faculty;
 
-		case 3:			
-			person::displaycount();
-			break;
-		case 4:	
-			for(int i=0;i<cnt;i++)
+student(){
+	rollno= new int;
+	*rollno=0;
+	name=blood_grp=DOB=addr=year_class=MOB=" ";
+}
+~student(){
+	delete rollno;
+}
+void add_data(){
+	cout<<"\n Enter student Information:"<<endl;
+	cout<<"Enter Name"<<endl;
+	cin>>name;
+	cout<<"Enter Roll no:"<<endl;
+	cin>>*rollno;
+    cout<<"Enter Div:"<<endl;
+	cin>>div;
+	cout<<"Enter DOB:"<<endl;
+	cin>>DOB;
+	cout<<"Enter blood_grp :"<<endl;
+	cin>>blood_grp;
+	cout<<"Enter mobile no:"<<endl;
+	cin>>MOB;
+	cout<<"Enter  Adddress:"<<endl;
+	cin>>addr;
+	cout<<"Enter year of studing:"<<endl;
+	cin>>year_class;
+}
+
+void display()
+{
+	cout<<"\n==========================================================================="<<endl;
+	cout<<"Name           :"<<name<<endl;	          
+    cout<<"Roll no        :"<<*rollno<<endl;
+    cout<<"Year           :"<<year_class<<endl;
+    cout<<"Div            :"<<div<<endl;
+    cout<<"date of birth  :"<<DOB<<endl;
+    cout<<"Blood group    :"<<blood_grp<<endl;
+    cout<<"Mobile No      :"<<MOB<<endl;
+    cout<<"Address        :"<<addr<<endl;
+    cout<<"============================================================================"<<endl;
+}
+static void header()
+{
+	cout<<"*****Student Information System*****"<<endl;
+}
+};
+
+class faculty
+{
+	private:
+	int id;
+	
+	public:
+	      faculty(){
+			id=00;
+		  }
+		  faculty(int n){
+			id=n;
+		  }
+		  
+		  void f_display(student &obj,char f_d)
+		  {cout<<"The id of faculty is :"<<id<<endl;
+			try
 			{
-				p[i]->display();
-				a[i]->calculate(p[i]);
+				if (obj.div == f_d)
+				obj.display();
+				else
+				throw(obj.div);
+
 			}
-			break;
-			
-		case 5:		
-			temp = p[0];
-			for(int j=1;j<cnt;j++)
+			catch(char x)
 			{
-				temp = &temp->compare(p[j]);
+				cout<<"Invalid Division"<<endl;
 			}
-			cout<<"\n ------TALLER PERSON INFORMATON-------"<<endl;
-			temp->display();
+		  }
+};
+
+int main(){
+	student st[5];
+	faculty f(5);
+	int ch=0;
+	int count=0;
+	do
+	{
+		cout<<"* * * Student Information system * * *"<<endl;
+		cout<<"***Menu***"<<endl;
+		cout<<"1. Add information "<<endl;
+		cout<<"2. Display Information "<<endl;
+		cout<<"3. Faculty Wise Information"<<endl;
+		cout<<"4. Exit "<<endl;
+		cout<<"Enter your choice"<<endl;
+		cin>>ch;
+
+	      switch(ch)
+		  {
+			case 1:
+			st[count].add_data();
+			count++;
 			break;
-		case 6: 
-		        return 0;		
-	}
-        }while(ch!=6);
+			case 2:
+			    for (int i=0;i<count; i++)
+			    {
+				student::header();
+				st[i].display();
+			    }
+			    break;
+			case 3:
+			    char f_div;
+			    cout<<"Enter Division of Faculty :"<<endl;
+			    cin>>f_div;
+			    for(int j=0;j<count;j++)
+			    {
+					
+				cout<<"*** Student Information system(faculty access) ***"<<endl;
+				f.f_display(st[j],f_div);
+                 }
+				break;
+			case 4:
+			    cout<<"program is end"<<endl;
+				exit(0);
+				break;
+
+		  }
+	}while(ch!=4);
+
+	return 0;
 }
